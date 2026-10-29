@@ -6,12 +6,12 @@ on:
       - main
 
 jobs:
-  execution:
+  test-run:
     runs-on: ubuntu-latest
 
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
 
-      - name: execution
+      - name: execute script
         run: bash greetings.sh

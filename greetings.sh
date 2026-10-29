@@ -46,5 +46,3 @@ echo "Thank you for listening to me."
 Info_log_writer "Printed thank you message"
 
 echo "Bye!"
-
-exit 1
