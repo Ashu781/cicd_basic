@@ -9,20 +9,20 @@ echo "interrupt received"
 
 }
 
-handle_cleanup(){
+handle_exit(){
 
-echo "handling cleanup"
-sleep 10
-rm log.txt
+echo "bye!"
 
 }
 
+rm log.txt
+
 NAME=${1:-"Ashutosh"}
 
-
-trap handle_cleanup EXIT
-
+trap handle_exit EXIT
 trap handle_interrupt INT
+
+sleep 10
 
 touch log.txt
 

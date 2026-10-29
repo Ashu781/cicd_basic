@@ -1,0 +1,17 @@
+name: basic cicd
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  execution:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: execution
+        run: bash greetings.sh
