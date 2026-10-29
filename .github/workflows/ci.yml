@@ -1,17 +1,31 @@
-name: basic cicd
+name: cicd
 
 on:
   push:
     branches:
       - main
 
+
 jobs:
-  test-run:
+  test-execution:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: execute script scenerio 1
+        run: bash greetings.sh
+
+      - name: execute script scenerio 2
+        run: bash greetings.sh Gayatri
+
+      - name: execute script scenerio 3
+        run: bash greetings.sh --help
+
+  display-success:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-
-      - name: execute script
-        run: bash greetings.sh
+      - name: display 
+        run: echo "Success"
