@@ -3,37 +3,46 @@
 set -euo pipefail
 
 
-handle_interrupt(){
-
-echo "interrupt received"
-
+handle_interrupt(){ 
+  echo "interrupt received"
 }
 
-handle_exit(){
-
-echo "bye!"
-
+Info_log_writer(){
+  echo "INFO [$(date '+%Y-%m-%d %H:%M:%S')] $1" >>log.txt
 }
 
-rm log.txt
 
-NAME=${1:-"Ashutosh"}
+INPUT=${1:-"Ashutosh"}
 
-trap handle_exit EXIT
 trap handle_interrupt INT
 
-sleep 10
+
+if [ "$INPUT" == '--help' ]; then
+  echo "Usage:"
+  echo "If you want a custom message for you: bash greetings.sh your_name"
+  echo "If you want the default name: bash greetings.sh"
+  exit
+fi
+
 
 touch log.txt
 
-echo "Hi! My name is $NAME, Welcome to my journey"
+Info_log_writer "Log file created"
 
-echo "Printed welcome message" > log.txt
+echo "Hi! My name is $INPUT"
+
+Info_log_writer "Printed introduction message"
 
 echo "I am on a learning journey"
 
-echo "added a line" >> log.txt
+Info_log_writer "Printed what I am doing"
 
 echo "I will definitely learn and grow"
 
-echo "added another line" >> log.txt
+Info_log_writer "Printed what I am postive and confident about"
+
+echo "Thank you for listening to me."
+
+Info_log_writer "Printed thank you message"
+
+echo "Bye!"
