@@ -41,4 +41,4 @@ jobs:
         run: docker build -t greet:v1 .
 
       - name: container run
-        run: docker run --rm --name a greet:v1
+        run: docker run --name greet_container greet:v1
