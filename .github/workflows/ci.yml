@@ -23,20 +23,22 @@ jobs:
       - name: execute script scenerio 3
         run: bash greetings.sh --help
 
+
   docker-build:
     runs-on: ubuntu-latest
     needs: test-execution
 
     steps:
-      - name: check docker tools
+      - name: docker tools check
         run: |
              docker --version
              docker compose version
 
-      - name: build image
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: image build
         run: docker build -t greet:v1 .
 
-      - name: run container
+      - name: container run
         run: docker run --rm --name a greet:v1
-
-
