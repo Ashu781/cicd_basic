@@ -23,10 +23,20 @@ jobs:
       - name: execute script scenerio 3
         run: bash greetings.sh --help
 
-  display-success:
+  docker-build:
     runs-on: ubuntu-latest
-    needs: test-execution    
+    needs: test-execution
 
     steps:
-      - name: display 
-        run: echo "Success"
+      - name: check docker tools
+        run: |
+             docker --version
+             docker compose version
+
+      - name: build image
+        run: docker build -t greet:v1 .
+
+      - name: run container
+        run: docker run --rm --name a greet:v1
+
+
